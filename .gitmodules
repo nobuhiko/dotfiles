@@ -1,0 +1,3 @@
+[submodule "vimfiles/colors"]
+	path = vimfiles/colors
+	url = https://nobuhiko@github.com/nobuhiko/ap_dark8.git
