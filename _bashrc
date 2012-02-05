@@ -1,0 +1,39 @@
+# ssh alias
+alias ssh_sakura="ssh -p 10022 kimoto@182.48.59.133"
+alias ssh_fvt="ssh fvt@202.210.132.227"
+
+## 新しく作られたファイルのパーミッションがつねに 644 になるようにする。基本。
+umask 022
+
+## core ファイルを作らせないようにする。これも基本。
+ulimit -c 0
+
+# ホスト名とユーザ名の先頭 2文字をとりだす。全部だと長いので。
+h2=`expr $HOSTNAME : '\(..\).*'`
+u2=`expr $USER : '\(..\).*'`
+# 現在のホストによってプロンプトの色を変える。
+case "$HOSTNAME" in
+    fvt*) col=31;;  # 赤
+    mango*) col=36;;  # 水色
+    sakura*) col=32;;  # 緑
+    MBA*)  col=33;;  # 黄
+    *) col=1;; # それ以外のホストでは強調表示
+esac
+PS1="$u2@$h2\[\e[${col}m\]\w[\!]\$\[\e[m\] "
+
+alias ls='ls -FG'
+alias ll='ls -o'   # 環境によっては -o はなく、-l を使う。
+alias la='ls -lag'
+
+# 補完の設定。あまり詳しくは設定してない。
+complete -d cd
+complete -c man
+complete -c h
+complete -c wi
+
+# bashrc はすべてのホストで共有しているが、
+# ホストごとに異なる設定は .bashrc_local という
+# ファイルに入れてある。おもに研究用データのパス名などを設定。
+if [ -f ~/.bashrc_local ]; then
+. ~/.bashrc_local
+fi
