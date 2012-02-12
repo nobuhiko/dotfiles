@@ -1,7 +1,3 @@
-# ssh alias
-alias ssh_sakura="ssh -p 10022 kimoto@182.48.59.133"
-alias ssh_fvt="ssh fvt@202.210.132.227"
-
 ## 新しく作られたファイルのパーミッションがつねに 644 になるようにする。基本。
 umask 022
 
@@ -14,7 +10,7 @@ u2=`expr $USER : '\(..\).*'`
 # 現在のホストによってプロンプトの色を変える。
 case "$HOSTNAME" in
     fvt*) col=31;;  # 赤
-    mango*) col=36;;  # 水色
+    www28148u*) col=36;;  # 水色
     sakura*) col=32;;  # 緑
     MBA*)  col=33;;  # 黄
     *) col=1;; # それ以外のホストでは強調表示
