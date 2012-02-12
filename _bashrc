@@ -33,3 +33,8 @@ complete -c wi
 if [ -f ~/.bashrc_local ]; then
 . ~/.bashrc_local
 fi
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
