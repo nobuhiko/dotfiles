@@ -4,3 +4,6 @@
 [submodule "vimfiles/bundle/syntastic"]
 	path = vimfiles/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule "vimfiles/bundle/vim-quickrun"]
+	path = vimfiles/bundle/vim-quickrun
+	url = https://github.com/thinca/vim-quickrun.git
