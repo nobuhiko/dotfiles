@@ -10,22 +10,30 @@ u2=`expr $USER : '\(..\).*'`
 # 現在のホストによってプロンプトの色を変える。
 case "$HOSTNAME" in
     fvt*) col=31;;  # 赤
-    www28148u*) col=36;;  # 水色
+    www2151uf*) col=36;;  # 水色
     sakura*) col=32;;  # 緑
     MBA*)  col=33;;  # 黄
     *) col=1;; # それ以外のホストでは強調表示
 esac
 PS1="$u2@$h2\[\e[${col}m\]\w[\!]\$\[\e[m\] "
 
-alias ls='ls -FG'
-alias ll='ls -o'   # 環境によっては -o はなく、-l を使う。
-alias la='ls -lag'
+export LS_COLORS="no=00;31:fi=00;37:di=00;36:ln=00;31:ex=00;31"
+
+alias ls='ls -la --color'
+alias ll='ls -la --color'   # 環境によっては -o はなく、-l を使う。
+#alias la='ls -laF --color'
+
+# http://d.hatena.ne.jp/Yudoufu/20110326/1301129885
+alias sudo='sudo -E '
 
 # 補完の設定。あまり詳しくは設定してない。
 complete -d cd
 complete -c man
 complete -c h
 complete -c wi
+
+#sudoedit
+export EDITOR=/usr/bin/vim
 
 # bashrc はすべてのホストで共有しているが、
 # ホストごとに異なる設定は .bashrc_local という
