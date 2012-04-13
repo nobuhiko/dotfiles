@@ -4,3 +4,6 @@
 [submodule "vimfiles/bundle/syntastic"]
 	path = vimfiles/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule "vimfiles/bundle/vim-sudo"]
+	path = vimfiles/bundle/vim-sudo
+	url = git://github.com/vim-scripts/sudo.vim.git
