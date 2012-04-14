@@ -175,4 +175,9 @@ inoremap <C-X> <ESC>:call PhpDocSingle()<CR>i
 nnoremap <C-X> :call PhpDocSingle()<CR> 
 vnoremap <C-X> :call PhpDocRange()<CR> 
 
+
 au BufRead,BufNewFile *.twig set syntax=htmljinja
+
+"-----------------
+" syntastic
+"

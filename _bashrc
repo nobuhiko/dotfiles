@@ -4,9 +4,11 @@ umask 022
 ## core ファイルを作らせないようにする。これも基本。
 ulimit -c 0
 
+source ~/.git-completion.bash
+
 # ホスト名とユーザ名の先頭 2文字をとりだす。全部だと長いので。
-h2=`expr $HOSTNAME : '\(..\).*'`
-u2=`expr $USER : '\(..\).*'`
+#h2=`expr $HOSTNAME : '\(..\).*'`
+#u2=`expr $USER : '\(..\).*'`
 # 現在のホストによってプロンプトの色を変える。
 case "$HOSTNAME" in
     fvt*) col=31;;  # 赤
@@ -15,7 +17,8 @@ case "$HOSTNAME" in
     MBA*)  col=33;;  # 黄
     *) col=1;; # それ以外のホストでは強調表示
 esac
-PS1="$u2@$h2\[\e[${col}m\]\w[\!]\$\[\e[m\] "
+
+PS1='\[\033[0;($col)m\][\u@\h \W$(__git_ps1 " (%s)")]\$\[\e[00m\] '
 
 export LS_COLORS="no=00;31:fi=00;37:di=00;36:ln=00;31:ex=00;31"
 
