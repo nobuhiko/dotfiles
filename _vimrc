@@ -10,6 +10,12 @@ set ignorecase
 " 大文字小文字の両方が含まれている場合は大文字小文字を区別
 set smartcase
 
+" 今いる場所をカレントdirとする
+set autochdir
+
+" clipboardを共有する
+set clipboard+=unnamed
+
 "---------------------------------------------------------------------------
 " 編集に関する設定:
 "cindentやautoindent時に挿入されるタブの幅（tabstop と揃えておくと良い）
