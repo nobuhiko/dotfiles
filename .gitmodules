@@ -19,3 +19,6 @@
 [submodule "vimfiles/bundle/vim-mru"]
 	path = vimfiles/bundle/vim-mru
 	url = https://github.com/vim-scripts/mru.vim.git
+[submodule "vimfiles/bundle/vim-php-cs-fixer"]
+	path = vimfiles/bundle/vim-php-cs-fixer
+	url = https://github.com/stephpy/vim-php-cs-fixer.git
