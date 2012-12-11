@@ -1,0 +1,14 @@
+[user]
+	name = のぶ
+	email = nobuhiko.kimoto@gmail.com
+[core]
+	editor = /usr/bin/vim
+    excludesfile = ~/.gitignore
+[color]
+  ui = true
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short

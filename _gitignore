@@ -1,0 +1,43 @@
+# general
+.DS_Store
+*.zip
+*.tar.gz
+*.exe
+*.bz2
+.hg/
+.gitignore
+ 
+# backup
+*~
+*.bak
+ 
+# gnu global
+GPATH
+GRTAGS
+GSYMS
+GTAGS
+ 
+# c/c++/objc
+a.out
+*.o
+*.a
+ 
+# python
+*.pyc
+build/
+dist/
+*.egg-info
+*.mo
+bulkloader-log-*
+ 
+# xcode
+*.pbxuser
+
+#ec-cube
+data/install.php
+data/config/config.php
+data/logs/*
+data/Smarty/templates_c/*
+data/cache/*
+html/upload/*
+backup

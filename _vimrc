@@ -204,6 +204,16 @@ nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>
 au BufNewFile,BufRead *.html set nowrap tabstop=2 shiftwidth=2
 au BufNewFile,BufRead *.tpl set nowrap tabstop=2 shiftwidth=2
 
+let g:php_noShortTags=1
+let g:php_asp_tags=1
+let php_sql_query=1
+let php_htmlInStrings=1
+
 "-----------------
 " syntastic
 "
+"
+
+if has('path_extra')
+    set tags+=tags;
+endif

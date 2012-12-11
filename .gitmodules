@@ -22,3 +22,6 @@
 [submodule "vimfiles/bundle/vim-php-cs-fixer"]
 	path = vimfiles/bundle/vim-php-cs-fixer
 	url = https://github.com/stephpy/vim-php-cs-fixer.git
+[submodule "vimfiles/indent"]
+	path = vimfiles/indent
+	url = https://github.com/vim-scripts/PHP-correct-Indenting.git
