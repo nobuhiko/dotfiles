@@ -203,6 +203,7 @@ nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>
 " 拡張子でインデントを変更する
 au BufNewFile,BufRead *.html set nowrap tabstop=2 shiftwidth=2
 au BufNewFile,BufRead *.tpl set nowrap tabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.php set nowrap tabstop=4 shiftwidth=4
 
 let g:php_noShortTags=1
 let g:php_asp_tags=1
@@ -213,6 +214,8 @@ let php_htmlInStrings=1
 " syntastic
 "
 "
+"let g:syntastic_php_checkers=['php', 'phpmd']
+let g:syntastic_php_checkers=['php']
 
 if has('path_extra')
     set tags+=tags;

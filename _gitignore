@@ -33,11 +33,17 @@ bulkloader-log-*
 # xcode
 *.pbxuser
 
+tags
+
 #ec-cube
 data/install.php
 data/config/config.php
 data/logs/*
-data/Smarty/templates_c/*
+data/Smarty/templates_c/**/*
 data/cache/*
-html/upload/*
+data/upload/csv/*.csv
+html/upload/**/*
+html/install/*
 backup
+
+!.gitkeep

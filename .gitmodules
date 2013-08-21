@@ -25,3 +25,6 @@
 [submodule "vimfiles/indent"]
 	path = vimfiles/indent
 	url = https://github.com/vim-scripts/PHP-correct-Indenting.git
+[submodule "vimfiles/bundle/vim-airline"]
+	path = vimfiles/bundle/vim-airline
+	url = https://github.com/bling/vim-airline
