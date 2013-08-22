@@ -28,3 +28,6 @@
 [submodule "vimfiles/bundle/vim-airline"]
 	path = vimfiles/bundle/vim-airline
 	url = https://github.com/bling/vim-airline
+[submodule "vimfiles/bundle/ag"]
+	path = vimfiles/bundle/ag
+	url = https://github.com/rking/ag.vim
