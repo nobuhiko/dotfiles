@@ -25,3 +25,6 @@
 [submodule "vimfiles/bundle/ag"]
 	path = vimfiles/bundle/ag
 	url = https://github.com/rking/ag.vim
+[submodule "vimfiles/bundle/vim-neocomplcache"]
+	path = vimfiles/bundle/vim-neocomplcache
+	url = https://github.com/Shougo/neocomplete.vim
