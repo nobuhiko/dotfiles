@@ -31,3 +31,9 @@
 [submodule "vimfiles/bundle/vim-neocomplete"]
 	path = vimfiles/bundle/vim-neocomplete
 	url = https://github.com/Shougo/neocomplete.vim
+[submodule "vimfiles/bundle/vim-easytags"]
+	path = vimfiles/bundle/vim-easytags
+	url = https://github.com/xolox/vim-easytags
+[submodule "vimfiles/bundle/vim-misc"]
+	path = vimfiles/bundle/vim-misc
+	url = https://github.com/xolox/vim-misc
