@@ -133,18 +133,6 @@ filetype plugin on
 "==================================================================
 "
 "------------------------------------
-" mru.vim
-"------------------------------------
-map ,m :MRU<LF>
-"
-"------------------------------------
-" surround.vim
-"------------------------------------
-" s, ssで選択範囲を指定文字でくくる
-nmap s <Plug>Ysurround
-nmap ss <Plug>Yssurround
-
-"------------------------------------
 " neocomplcache
 "------------------------------------
 let g:neocomplcache_enable_at_startup = 1 " 起動時に有効化
@@ -175,3 +163,43 @@ inoremap <C-X> <ESC>:call PhpDocSingle()<CR>i
 nnoremap <C-X> :call PhpDocSingle()<CR> 
 vnoremap <C-X> :call PhpDocRange()<CR> 
 
+
+"-------------------
+" Vim-php-cs-fixer
+"-------------------
+"
+
+let g:php_cs_fixer_path = "~/dotfiles/php-cs-fixer" " define the path to the php-cs-fixer.phar
+let g:php_cs_fixer_level = "all"                " which level ?
+let g:php_cs_fixer_config = "default"           " configuration
+let g:php_cs_fixer_php_path = "php"             " Path to PHP
+let g:php_cs_fixer_fixers_list = ""             " List of fixers
+let g:php_cs_fixer_enable_default_mapping = 1   " Enable the mapping by default (<leader>pcd)
+let g:php_cs_fixer_dry_run = 0                  " Call command with dry-run option
+let g:php_cs_fixer_verbose = 0                  " Return the output of command if 1, else an inline information.
+
+
+nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>
+nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>
+
+"
+" 拡張子でインデントを変更する
+au BufNewFile,BufRead *.html set nowrap tabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.tpl set nowrap tabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.php set nowrap tabstop=4 shiftwidth=4
+
+let g:php_noShortTags=1
+let g:php_asp_tags=1
+let php_sql_query=1
+let php_htmlInStrings=1
+
+"-----------------
+" syntastic
+"
+"
+"let g:syntastic_php_checkers=['php', 'phpmd']
+let g:syntastic_php_checkers=['php']
+
+if has('path_extra')
+    set tags+=tags;
+endif

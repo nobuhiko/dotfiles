@@ -1,3 +1,24 @@
 [submodule "vimfiles/colors"]
 	path = vimfiles/colors
-	url = https://nobuhiko@github.com/nobuhiko/ap_dark8.git
+    url = https://nobuhiko@github.com/nobuhiko/ap_dark8.git
+[submodule "vimfiles/bundle/vim-quickrun"]
+	path = vimfiles/bundle/vim-quickrun
+	url = https://github.com/thinca/vim-quickrun.git
+[submodule "vimfiles/bundle/vim-sudo"]
+	path = vimfiles/bundle/vim-sudo
+	url = git://github.com/vim-scripts/sudo.vim.git
+[submodule "vimfiles/bundle/vim-fugitive"]
+	path = vimfiles/bundle/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
+[submodule "syntastic"]
+	path = syntastic
+	url = https://github.com/scrooloose/syntastic.git
+[submodule "vimfiles/bundle/vim-php-cs-fixer"]
+	path = vimfiles/bundle/vim-php-cs-fixer
+	url = https://github.com/stephpy/vim-php-cs-fixer.git
+[submodule "vimfiles/bundle/vim-airline"]
+	path = vimfiles/bundle/vim-airline
+	url = https://github.com/bling/vim-airline
+[submodule "vimfiles/bundle/ag"]
+	path = vimfiles/bundle/ag
+	url = https://github.com/rking/ag.vim
