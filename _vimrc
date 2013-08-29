@@ -153,6 +153,7 @@ let g:neocomplcache_plugincompletionlength = {
 let g:neocomplcache_dictionaryfiletypelists = {
             \ 'default' : '',
             \ 'php' : $VIM.'/dict/PHP.dict',
+            \ 'tpl' : $VIM.'/dict/smarty.dict',
             \ }
 
 "------------------------------------
