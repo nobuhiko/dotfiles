@@ -124,6 +124,9 @@ map gw :tabclose<CR>
 map gp :tabprev<CR>
 map tt :tabnew
 
+" mac cron
+set backupskip=/tmp/*,/private/tmp/*
+
 " vim-pathogen
 " pathogenでftdetectなどをloadさせるために一度ファイルタイプ判定をoff
 filetype off
