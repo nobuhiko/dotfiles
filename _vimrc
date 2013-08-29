@@ -140,33 +140,30 @@ filetype plugin on
 "==================================================================
 "" Plugin
 "==================================================================
-
-"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-
-" Enable heavy features.
-" Use camel case completion.
-"let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-"let g:neocomplcache_enable_underbar_completion = 1
-
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'php' : $HOME.'/.vim/dict/PHP.dict',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
+"
+"------------------------------------
+" neocomplcache
+"------------------------------------
+let g:neocomplcache_enable_at_startup = 1 " 起動時に有効化
+"大文字小文字を区別する
+let g:neocomplcache_smartcase = 1
+"キャメルケース補完を有効にする
+let g:neocomplcache_enablecamelcasecompletion = 1
+"アンダーバー補完を有効にする
+let g:neocomplcache_enableunderbarcompletion = 1
+"シンタックスファイルの補完対象キーワードとする最小の長さ
+let g:neocomplcache_minsyntaxlength = 3
+"プラグイン毎の補完関数を呼び出す文字数
+let g:neocomplcache_plugincompletionlength = {
+  \ 'keyword_complete'  : 2,
+  \ 'syntax_complete'   : 2
+  \ }
+"ファイルタイプ毎の辞書ファイルの場所
+let g:neocomplcache_dictionaryfiletypelists = {
+            \ 'default' : '',
+            \ 'php' : $VIM.'/dict/PHP.dict',
+            \ 'tpl' : $VIM.'/dict/smarty.dict',
+            \ }
 
 "------------------------------------
 " PDV (phpDocumentor for Vim) 
