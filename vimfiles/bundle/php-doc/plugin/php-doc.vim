@@ -78,7 +78,7 @@ let g:pdv_cfg_CommentSingle = "//"
 let g:pdv_cfg_Type = "mixed"
 let g:pdv_cfg_Package = ""
 let g:pdv_cfg_Version = "$id$"
-let g:pdv_cfg_Author = "Nobuhiko Kimoto <kimoto@s-cubism.jp>"
+let g:pdv_cfg_Author = "Nobuhiko Kimoto <info@nob-log.info>"
 let g:pdv_cfg_Copyright = ""
 let g:pdv_cfg_License = ""
 

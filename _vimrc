@@ -127,6 +127,10 @@ map tt :tabnew
 " mac cron
 set backupskip=/tmp/*,/private/tmp/*
 
+
+" tagsジャンプの時に複数ある時は一覧表示                                        
+nnoremap <C-]> g<C-]> 
+
 " vim-pathogen
 " pathogenでftdetectなどをloadさせるために一度ファイルタイプ判定をoff
 filetype off
