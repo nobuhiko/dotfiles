@@ -1,6 +1,5 @@
 # general
 .DS_Store
-.netrwhist
 *.zip
 *.tar.gz
 *.exe

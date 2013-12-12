@@ -13,7 +13,7 @@ source ~/.git-completion.bash
 case "$HOSTNAME" in
     fvt*) col=31;;  # 赤
     www2151uf*) col=36;;  # 水色
-    sakura*) col=32;;  # 緑
+    www6359uj*) col=32;;  # 緑
     MBA*)  col=33;;  # 黄
     *) col=1;; # それ以外のホストでは強調表示
 esac
