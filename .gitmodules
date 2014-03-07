@@ -28,3 +28,6 @@
 [submodule "vimfiles/bundle/wildfire.vim"]
 	path = vimfiles/bundle/wildfire.vim
 	url = git@github.com:gcmt/wildfire.vim.git
+[submodule "vimfiles/bundle/vim-javascript"]
+	path = vimfiles/bundle/vim-javascript
+	url = git@github.com:pangloss/vim-javascript.git
