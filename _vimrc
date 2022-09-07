@@ -15,6 +15,10 @@ set autochdir
 
 " clipboardを共有する
 set clipboard+=unnamed
+"set clipboard=unnamed,autoselect
+
+" un~を無効にする
+set noundofile
 
 "---------------------------------------------------------------------------
 " 編集に関する設定:
@@ -60,28 +64,40 @@ set cmdheight=2
 set showcmd
 " タイトルを表示
 set title
+
+" クリップボードにコピー
+if has('mac')
+    set clipboard+=unnamed
+elseif has('unix')
+    set clipboard=unnamedplus
+endif
+
+
 " 画面を黒地に白にする (次行の先頭の " を削除すれば有効になる)
-colorscheme ap_dark8
+"colorscheme ap_dark8
+
+"set background=dark
+"colorscheme gruvbox
  "==================================================================
 " ステータスライン コマンドライン
 "==================================================================
 
 " 常にステータス行を表示 (詳細は:he laststatus)
-set laststatus=2
+"set laststatus=2
 " ステータスラインに文字コードと改行文字を表示する
-set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']['.&ft.']'}\ %F%=%l,%c%V%8P
+"set statusline=%<[%n]%m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']['.&ft.']'}\ %F%=%l,%c%V%8P
 
 " コマンドラインの高さ
 set cmdheight=2
 " コマンドをステータス行に表示
 set showcmd
 " コマンドライン補完するときに強化されたものを使う(参照 :help wildmenu)
-set wildmenu
-set wildmode=list:longest
-set formatoptions+=mM
+"set wildmenu
+"set wildmode=list:longest
+"set formatoptions+=mM
 
 " タイトルを表示
-set title
+"set title
 
 "inoremap <expr> <CR> pumvisible() ? \<C-Y>\<CR>" : "\<CR>"
 "---------------------------------------------------------------------------
@@ -110,7 +126,6 @@ imap "" ""<Left>
 imap '' ''<Left>
 imap <> <><Left>
 
-
 " 言語
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,cp932
@@ -127,92 +142,188 @@ map tt :tabnew
 " mac cron
 set backupskip=/tmp/*,/private/tmp/*
 
+if !&compatible
+  set nocompatible
+endif
 
-" tagsジャンプの時に複数ある時は一覧表示                                        
-nnoremap <C-]> g<C-]> 
+" reset augroup
+augroup MyAutoCmd
+  autocmd!
+augroup END
 
-" vim-pathogen
-" pathogenでftdetectなどをloadさせるために一度ファイルタイプ判定をoff
-filetype off
-" pathogen.vimによってbundle配下のpluginをpathに加える
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-set helpfile=$VIMRUNTIME/doc/help.txt
-" ファイルタイプ判定をon
-filetype plugin on
+" dein setting {{{
+" プラグインが実際にインストールされるディレクトリ
+let s:dein_dir_ = '~/.config/dein'
+let s:dein_dir = expand(s:dein_dir_)
 
-"==================================================================
-"" Plugin
-"==================================================================
-"
-"------------------------------------
-" neocomplcache
-"------------------------------------
-let g:neocomplcache_enable_at_startup = 1 " 起動時に有効化
-"大文字小文字を区別する
-let g:neocomplcache_smartcase = 1
-"キャメルケース補完を有効にする
-let g:neocomplcache_enablecamelcasecompletion = 1
-"アンダーバー補完を有効にする
-let g:neocomplcache_enableunderbarcompletion = 1
-"シンタックスファイルの補完対象キーワードとする最小の長さ
-let g:neocomplcache_minsyntaxlength = 3
-"プラグイン毎の補完関数を呼び出す文字数
-let g:neocomplcache_plugincompletionlength = {
-  \ 'keyword_complete'  : 2,
-  \ 'syntax_complete'   : 2
-  \ }
-"ファイルタイプ毎の辞書ファイルの場所
-let g:neocomplcache_dictionaryfiletypelists = {
-            \ 'default' : '',
-            \ 'php' : $VIM.'/dict/PHP.dict',
-            \ 'tpl' : $VIM.'/dict/smarty.dict',
-            \ }
+let s:dein_repo_dir = expand(s:dein_dir_ . '/repos/github.com/Shougo/dein.vim')
 
-"------------------------------------
-" PDV (phpDocumentor for Vim) 
-"------------------------------------
-"
-inoremap <C-X> <ESC>:call PhpDocSingle()<CR>i 
-nnoremap <C-X> :call PhpDocSingle()<CR> 
-vnoremap <C-X> :call PhpDocRange()<CR> 
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
 
-"-------------------
-" Vim-php-cs-fixer
-"-------------------
-"
+  execute 'set runtimepath^=' . s:dein_repo_dir
+endif
 
-let g:php_cs_fixer_path = "~/dotfiles/php-cs-fixer" " define the path to the php-cs-fixer.phar
-let g:php_cs_fixer_level = "all"                " which level ?
-let g:php_cs_fixer_config = "default"           " configuration
-let g:php_cs_fixer_php_path = "php"             " Path to PHP
-let g:php_cs_fixer_fixers_list = ""             " List of fixers
-let g:php_cs_fixer_enable_default_mapping = 1   " Enable the mapping by default (<leader>pcd)
-let g:php_cs_fixer_dry_run = 0                  " Call command with dry-run option
-let g:php_cs_fixer_verbose = 0                  " Return the output of command if 1, else an inline information.
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+
+  " 補完系
+  call dein#add('Shougo/dein.vim')
+  call dein#add('haya14busa/dein-command.vim')
+  call dein#add('prabirshrestha/vim-lsp')
+  call dein#add('mattn/vim-lsp-settings')
+  call dein#add('prabirshrestha/asyncomplete.vim', {'merged': 0})
+  call dein#add('prabirshrestha/asyncomplete-lsp.vim', {'merged': 0})
+  call dein#add('prabirshrestha/asyncomplete-buffer.vim')
+  call dein#add('hrsh7th/vim-vsnip')
+  call dein#add('hrsh7th/vim-vsnip-integ')
+  call dein#add('kitagry/vs-snippets')
+  call dein#add('kitagry/asyncomplete-tabnine.vim')
+  call dein#add('prabirshrestha/async.vim')
 
 
-nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>
-nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>
 
-"
+  " Git系
+  call dein#add('tpope/vim-fugitive')
+
+  call dein#add('plasticboy/vim-markdown')
+  call dein#add('Shougo/context_filetype.vim')
+
+  call dein#add('vim-airline/vim-airline')
+  
+  call dein#add('phpactor/phpactor', { 'on_ft' : ['php'], 'build': ['composer install'] })
+  call dein#add('scrooloose/syntastic')
+
+
+  call dein#add('Shougo/ddc.vim')
+  call dein#add('vim-denops/denops.vim')
+  call dein#add('Shougo/ddc-around')
+  call dein#add('Shougo/ddc-matcher_head')
+  call dein#add('Shougo/ddc-sorter_rank')
+
+
+  call dein#end()
+  call dein#save_state()
+endif
+
+" もし、未インストールものものがあったらインストール
+augroup PluginInstall
+  autocmd!
+  autocmd VimEnter * if dein#check_install() | call dein#install() | endif
+augroup END
+" }}}
+
+" $VIMRUNTIME/syntax/php.vim
+let g:php_baselib       = 1
+let g:php_htmlInStrings = 1
+let g:php_noShortTags   = 1
+let g:php_sql_query     = 1
+
+" colorschemeの設定前に書くこと
+autocmd ColorScheme * highlight LineNr ctermfg=247
+set background=dark
+colorscheme janah
+
+
+
+" 画面を分割して定義元へのジャンプ
+function! DefinitionJumpWithPhpactor()
+    split
+    call phpactor#GotoDefinition()
+endfunction
+
+
+" useの補完
+nmap <silent><Leader>u      :<C-u>call phpactor#UseAdd()<CR>
+" コンテキストメニューの起動(カーソル下のクラスやメンバに対して実行可能な選択肢を表示してくれます)
+nmap <silent><Leader>mm     :<C-u>call phpactor#ContextMenu()<CR>
+" ナビゲーションメニューの起動(クラスの参照元を列挙したり、他ファイルへのジャンプなど)
+nmap <silent><Leader>nn     :<C-u>call phpactor#Navigate()<CR>
+" カーソル下のクラスやメンバの定義元にジャンプ
+nmap <silent><Leader>o      :<C-u>call phpactor#GotoDefinition()<CR>
+" 編集中のクラスに対し各種の変更を加える(コンストラクタ補完、インタフェース実装など)
+nmap <silent><Leader>tt     :<C-u>call phpactor#Transform()<CR>
+" 新しいクラスを生成する(編集中のファイルに)
+nmap <silent><Leader>cc     :<C-u>call phpactor#ClassNew()<CR>
+" 選択した範囲を変数に抽出する
+nmap <silent><Leader>ee     :<C-u>call phpactor#ExtractExpression(v:false)<CR>
+" 選択した範囲を変数に抽出する
+vmap <silent><Leader>ee     :<C-u>call phpactor#ExtractExpression(v:true)<CR>
+" 選択した範囲を新たなメソッドとして抽出する
+vmap <silent><Leader>em     :<C-u>call phpactor#ExtractMethod()<CR>
+" split → jump
+nmap <silent><C-w><Leader>o :<C-u>call DefinitionJumpWithPhpactor()<CR>
+" カーソル下のクラスや変数の情報を表示する
+" 他のエディタで、マウスカーソルをおいたときに表示されるポップアップなどに相当
+vmap <silent><Leader>hh     :<C-u>call phpactor#Hover()<CR>
+
+" tagsジャンプの時に複数ある時は一覧表示
+nnoremap <C-]> g<C-]>
+
 " 拡張子でインデントを変更する
 au BufNewFile,BufRead *.html set nowrap tabstop=2 shiftwidth=2
-au BufNewFile,BufRead *.tpl set nowrap tabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.tpl set nowrap tabstop=4 shiftwidth=4
 au BufNewFile,BufRead *.php set nowrap tabstop=4 shiftwidth=4
-
-let g:php_noShortTags=1
-let g:php_asp_tags=1
-let php_sql_query=1
-let php_htmlInStrings=1
-
-"-----------------
-" syntastic
-"
-"
-"let g:syntastic_php_checkers=['php', 'phpmd']
-let g:syntastic_php_checkers=['php']
 
 if has('path_extra')
     set tags+=tags;
 endif
+
+" syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_php_checkers = ['php']
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+
+" Customize global settings
+" Use around source.
+" https://github.com/Shougo/ddc-around
+call ddc#custom#patch_global('sources', ['around'])
+
+" Use matcher_head and sorter_rank.
+" https://github.com/Shougo/ddc-matcher_head
+" https://github.com/Shougo/ddc-sorter_rank
+call ddc#custom#patch_global('sourceOptions', {
+      \ '_': {
+      \   'matchers': ['matcher_head'],
+      \   'sorters': ['sorter_rank']},
+      \ })
+
+" Change source options
+call ddc#custom#patch_global('sourceOptions', {
+      \ 'around': {'mark': 'A'},
+      \ })
+call ddc#custom#patch_global('sourceParams', {
+      \ 'around': {'maxSize': 500},
+      \ })
+
+" Customize settings on a filetype
+call ddc#custom#patch_filetype(['c', 'cpp'], 'sources', ['around', 'clangd'])
+call ddc#custom#patch_filetype(['c', 'cpp'], 'sourceOptions', {
+      \ 'clangd': {'mark': 'C'},
+      \ })
+call ddc#custom#patch_filetype('markdown', 'sourceParams', {
+      \ 'around': {'maxSize': 100},
+      \ })
+
+" Mappings
+
+" <TAB>: completion.
+inoremap <silent><expr> <TAB>
+\ ddc#map#pum_visible() ? '<C-n>' :
+\ (col('.') <= 1 <Bar><Bar> getline('.')[col('.') - 2] =~# '\s') ?
+\ '<TAB>' : ddc#map#manual_complete()
+
+" <S-TAB>: completion back.
+inoremap <expr><S-TAB>  ddc#map#pum_visible() ? '<C-p>' : '<C-h>'
+
+" Use ddc.
+call ddc#enable()

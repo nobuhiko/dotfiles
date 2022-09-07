@@ -31,3 +31,24 @@
 [submodule "vimfiles/bundle/vim-javascript"]
 	path = vimfiles/bundle/vim-javascript
 	url = git@github.com:pangloss/vim-javascript.git
+[submodule "vimfiles/bundle/vim-twig"]
+	path = vimfiles/bundle/vim-twig
+	url = https://github.com/evidens/vim-twig
+[submodule "vimfiles/bundle/html5"]
+	path = vimfiles/bundle/html5
+	url = https://github.com/othree/html5.vim
+[submodule "vimfiles/bundle/vim-css3-syntax"]
+	path = vimfiles/bundle/vim-css3-syntax
+	url = https://github.com/hail2u/vim-css3-syntax.git
+[submodule "vimfiles/bundle/dart-vim-plugin"]
+	path = vimfiles/bundle/dart-vim-plugin
+	url = https://github.com/dart-lang/dart-vim-plugin
+[submodule "vimfiles/bundle/smarty.vim"]
+	path = vimfiles/bundle/smarty.vim
+	url = https://github.com/blueyed/smarty.vim
+[submodule "vimfiles/bundle/vim-js-indent"]
+	path = vimfiles/bundle/vim-js-indent
+	url = https://github.com/jason0x43/vim-js-indent
+[submodule "vimfiles/bundle/vim-ansible-yaml"]
+	path = vimfiles/bundle/vim-ansible-yaml
+	url = git@github.com:chase/vim-ansible-yaml.git

@@ -44,7 +44,15 @@ export EDITOR=/usr/bin/vim
 #    . ~/.bashrc_local
 #fi
 
-# Source global definitions
-#if [ -f /etc/bashrc ]; then
-#    . /etc/bashrc
+#if [ -f ~/.bashrc ] ; then
+#    . ~/.bashrc
 #fi
+source ~/.git-completion.bash
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
+export PATH="/opt/homebrew/bin:$PATH"

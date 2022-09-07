@@ -27,7 +27,7 @@ a.out
 build/
 dist/
 *.egg-info
-*.mo
+#*.mo
 bulkloader-log-*
  
 # xcode
@@ -42,8 +42,10 @@ data/logs/*
 data/Smarty/templates_c/**/*
 data/cache/*
 data/upload/csv/*.csv
+data/downloads/tmp/*
 html/upload/**/*
 html/install/*
 backup
 
 !.gitkeep
+!dummy
