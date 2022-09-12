@@ -1,5 +1,85 @@
 " vim:set ts=8 sts=2 sw=2 tw=0: (この行に関しては:help modelineを参照)
 
+" mac cron
+set backupskip=/tmp/*,/private/tmp/*
+
+if !&compatible
+  set nocompatible
+endif
+
+" reset augroup
+augroup MyAutoCmd
+  autocmd!
+augroup END
+
+" dein setting {{{
+" プラグインが実際にインストールされるディレクトリ
+let s:dein_dir_ = '~/.config/dein'
+let s:dein_dir = expand(s:dein_dir_)
+
+let s:dein_repo_dir = expand(s:dein_dir_ . '/repos/github.com/Shougo/dein.vim')
+
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+
+  execute 'set runtimepath^=' . s:dein_repo_dir
+endif
+
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+
+  " 補完系
+  call dein#add('Shougo/dein.vim')
+  call dein#add('haya14busa/dein-command.vim')
+  call dein#add('prabirshrestha/vim-lsp')
+  call dein#add('mattn/vim-lsp-settings')
+  call dein#add('prabirshrestha/asyncomplete.vim', {'merged': 0})
+  call dein#add('prabirshrestha/asyncomplete-lsp.vim', {'merged': 0})
+  call dein#add('prabirshrestha/asyncomplete-buffer.vim')
+  call dein#add('hrsh7th/vim-vsnip')
+  call dein#add('hrsh7th/vim-vsnip-integ')
+  call dein#add('kitagry/vs-snippets')
+  call dein#add('kitagry/asyncomplete-tabnine.vim')
+  call dein#add('prabirshrestha/async.vim')
+
+
+
+  " Git系
+  call dein#add('tpope/vim-fugitive')
+
+  call dein#add('plasticboy/vim-markdown')
+  call dein#add('Shougo/context_filetype.vim')
+
+  call dein#add('vim-airline/vim-airline')
+  
+  call dein#add('phpactor/phpactor', { 'on_ft' : ['php'], 'build': ['composer install'] })
+  call dein#add('scrooloose/syntastic')
+  "call dein#add('lumiliet/vim-twig')
+  "call dein#add('tokutake/twig-indent')
+
+  call dein#add('Shougo/ddc.vim')
+  call dein#add('vim-denops/denops.vim')
+  call dein#add('Shougo/ddc-around')
+  call dein#add('Shougo/ddc-matcher_head')
+  call dein#add('Shougo/ddc-sorter_rank')
+
+
+  call dein#end()
+  call dein#save_state()
+endif
+
+" もし、未インストールものものがあったらインストール
+augroup PluginInstall
+  autocmd!
+  autocmd VimEnter * if dein#check_install() | call dein#install() | endif
+augroup END
+" }}}
+
+filetype plugin indent on
+syntax enable
+
 syntax on
 
 "---------------------------------------------------------------------------
@@ -139,81 +219,7 @@ map gw :tabclose<CR>
 map gp :tabprev<CR>
 map tt :tabnew
 
-" mac cron
-set backupskip=/tmp/*,/private/tmp/*
 
-if !&compatible
-  set nocompatible
-endif
-
-" reset augroup
-augroup MyAutoCmd
-  autocmd!
-augroup END
-
-" dein setting {{{
-" プラグインが実際にインストールされるディレクトリ
-let s:dein_dir_ = '~/.config/dein'
-let s:dein_dir = expand(s:dein_dir_)
-
-let s:dein_repo_dir = expand(s:dein_dir_ . '/repos/github.com/Shougo/dein.vim')
-
-if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-  endif
-
-  execute 'set runtimepath^=' . s:dein_repo_dir
-endif
-
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
-
-  " 補完系
-  call dein#add('Shougo/dein.vim')
-  call dein#add('haya14busa/dein-command.vim')
-  call dein#add('prabirshrestha/vim-lsp')
-  call dein#add('mattn/vim-lsp-settings')
-  call dein#add('prabirshrestha/asyncomplete.vim', {'merged': 0})
-  call dein#add('prabirshrestha/asyncomplete-lsp.vim', {'merged': 0})
-  call dein#add('prabirshrestha/asyncomplete-buffer.vim')
-  call dein#add('hrsh7th/vim-vsnip')
-  call dein#add('hrsh7th/vim-vsnip-integ')
-  call dein#add('kitagry/vs-snippets')
-  call dein#add('kitagry/asyncomplete-tabnine.vim')
-  call dein#add('prabirshrestha/async.vim')
-
-
-
-  " Git系
-  call dein#add('tpope/vim-fugitive')
-
-  call dein#add('plasticboy/vim-markdown')
-  call dein#add('Shougo/context_filetype.vim')
-
-  call dein#add('vim-airline/vim-airline')
-  
-  call dein#add('phpactor/phpactor', { 'on_ft' : ['php'], 'build': ['composer install'] })
-  call dein#add('scrooloose/syntastic')
-
-
-  call dein#add('Shougo/ddc.vim')
-  call dein#add('vim-denops/denops.vim')
-  call dein#add('Shougo/ddc-around')
-  call dein#add('Shougo/ddc-matcher_head')
-  call dein#add('Shougo/ddc-sorter_rank')
-
-
-  call dein#end()
-  call dein#save_state()
-endif
-
-" もし、未インストールものものがあったらインストール
-augroup PluginInstall
-  autocmd!
-  autocmd VimEnter * if dein#check_install() | call dein#install() | endif
-augroup END
-" }}}
 
 " $VIMRUNTIME/syntax/php.vim
 let g:php_baselib       = 1
@@ -266,6 +272,8 @@ nnoremap <C-]> g<C-]>
 au BufNewFile,BufRead *.html set nowrap tabstop=2 shiftwidth=2
 au BufNewFile,BufRead *.tpl set nowrap tabstop=4 shiftwidth=4
 au BufNewFile,BufRead *.php set nowrap tabstop=4 shiftwidth=4
+au BufNewFile,BufRead *.twig set filetype=html
+"au BufNewFile,BufRead *.twig set filetype=htmljinja
 
 if has('path_extra')
     set tags+=tags;
