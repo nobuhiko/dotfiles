@@ -1,0 +1,18 @@
+#!/bin/sh
+branch_name=$(git rev-parse --abbrev-ref HEAD)
+
+if [ "${branch_name}" = "master" ]; then
+    echo "master branch is dmmm"
+
+elif [ "${branch_name}" = "dev" ]; then
+    echo "dev branch is dm"
+
+elif [ "${branch_name}" = "" ]; then
+    echo "dev branch is null"
+
+else
+    git checkout dev
+    git merge "${branch_name}"
+    git ftp push
+    git checkout "${branch_name}"
+fi
