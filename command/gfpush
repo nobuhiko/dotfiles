@@ -12,7 +12,8 @@ elif [ "${branch_name}" = "" ]; then
 
 else
     git checkout dev
-    git merge "${branch_name}"
+    git merge -Xtheirs "${branch_name}"
     git ftp push
     git checkout "${branch_name}"
+    git push origin "${branch_name}"
 fi
