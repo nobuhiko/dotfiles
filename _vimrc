@@ -57,7 +57,8 @@ if dein#load_state(s:dein_dir)
   call dein#add('phpactor/phpactor', { 'on_ft' : ['php'], 'build': ['composer install'] })
   call dein#add('scrooloose/syntastic')
   "call dein#add('lumiliet/vim-twig')
-  "call dein#add('tokutake/twig-indent')
+  call dein#add('jason0x43/vim-js-indent')
+  call dein#add('blueyed/smarty.vim')
 
   call dein#add('Shougo/ddc.vim')
   call dein#add('vim-denops/denops.vim')
@@ -220,6 +221,8 @@ map gp :tabprev<CR>
 map tt :tabnew
 
 
+map rr     :<C-u>call phpactor#Transform()<CR>
+
 
 " $VIMRUNTIME/syntax/php.vim
 let g:php_baselib       = 1
@@ -270,9 +273,10 @@ nnoremap <C-]> g<C-]>
 
 " 拡張子でインデントを変更する
 au BufNewFile,BufRead *.html set nowrap tabstop=2 shiftwidth=2
-au BufNewFile,BufRead *.tpl set nowrap tabstop=4 shiftwidth=4
+"au BufNewFile,BufRead *.tpl set nowrap tabstop=4 shiftwidth=4
 au BufNewFile,BufRead *.php set nowrap tabstop=4 shiftwidth=4
 au BufNewFile,BufRead *.twig set filetype=html
+au BufNewFile,BufRead *.tpl set filetype=smarty
 "au BufNewFile,BufRead *.twig set filetype=htmljinja
 
 if has('path_extra')

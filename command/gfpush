@@ -2,13 +2,45 @@
 branch_name=$(git rev-parse --abbrev-ref HEAD)
 
 if [ "${branch_name}" = "master" ]; then
-    echo "master branch is dmmm"
+
+    echo "マージするブランチを選択してください:"
+    branches=$(git branch --no-merged)
+    select branch in $branches; do
+    # 選択されたブランチが存在するか確認する
+    if [[ -z $branch ]]; then
+        echo "無効な選択肢です。もう一度選択してください。"
+    else
+        # 選択されたブランチを master にマージする前に確認を求める
+        read -p "選択されたブランチ $branch を master にマージしますか？ [Y/N]: " confirm
+        if [[ $confirm != [yY] ]]; then
+        echo "マージを中止します。"
+        exit 0
+        fi
+
+        git ftp catchup -s new
+        git merge $branch
+        git ftp push -s new --dry-run
+
+        read -p "本番環境にデプロイしますか？ [Y/N]: " confirm
+        if [[ $confirm != [yY] ]]; then
+            echo "デプロイを中止します。"
+            exit 0
+        fi
+
+        git ftp push -s new
+        # mergeしたブランチを削除する
+        git branch -d $branch
+        break
+    fi
+done
 
 elif [ "${branch_name}" = "dev" ]; then
     echo "dev branch is dm"
+    exit 0
 
 elif [ "${branch_name}" = "" ]; then
-    echo "dev branch is null"
+    echo "branch is null"
+    exit 0
 
 else
     git checkout dev
@@ -16,4 +48,5 @@ else
     git ftp push
     git checkout "${branch_name}"
     git push origin "${branch_name}"
+    php vendor/bin/phpunit tests/class/ 
 fi
