@@ -17,9 +17,9 @@ if [ "${branch_name}" = "master" ]; then
         exit 0
         fi
 
-        git ftp catchup -s new
+        git ftp catchup -s prod
         git merge $branch
-        git ftp push -s new --dry-run
+        git ftp push -s prod --dry-run
 
         read -p "本番環境にデプロイしますか？ [Y/N]: " confirm
         if [[ $confirm != [yY] ]]; then
@@ -27,9 +27,10 @@ if [ "${branch_name}" = "master" ]; then
             exit 0
         fi
 
-        git ftp push -s new
+        git ftp push -s prod
         # mergeしたブランチを削除する
         git branch -d $branch
+        git push origin --delete $branch
         break
     fi
 done
