@@ -45,9 +45,12 @@ elif [ "${branch_name}" = "" ]; then
 
 else
     git checkout dev
+    git fetch origin dev
+    git reset --hard origin/dev
     git merge -Xtheirs "${branch_name}"
     git ftp push
     git checkout "${branch_name}"
     git push origin "${branch_name}"
+    git push origin dev
     php vendor/bin/phpunit tests/class/ 
 fi
