@@ -51,7 +51,7 @@ else
     git merge --no-edit -Xtheirs "${branch_name}"
     git ftp push --dry-run
 
-    read -p "テスト環境にデプロイしますか？ [Y/N]: " confirm
+    read -p "テスト環境に上記ファイルをデプロイしますか？ [Y/N]: " confirm
     if [[ $confirm != [yY] ]]; then
         echo "デプロイを中止します。"
         exit 0
